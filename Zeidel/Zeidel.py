@@ -17,14 +17,27 @@ def zeidel(matrix, eps):
     printMatrix(matrix)
 
     coefficients = [matrix[i][i] for i in range(size)]
+    new_matrix = [[matrix[i][j] for j in range(size + 1)] for i in range(size)]
     for i in range(size):
         for j in range(size):
-            matrix[i][j] /= (-coefficients[i])
+            new_matrix[i][j] /= (-coefficients[i])
             if i == j:
-                matrix[i][j] = 0
-        matrix[i][size] /= (coefficients[i])
-    x_prev = [matrix[i][-1] for i in range(size)]
+                new_matrix[i][j] = 0
+        new_matrix[i][size] /= (coefficients[i])
+    x_prev = [new_matrix[i][-1] for i in range(size)]
     x_next = [0]*size
+
+    for i in range(size):
+        for j in range(i):
+            x_next[i] += new_matrix[i][j]*x_next[j]
+        for j in range(i, size):
+            x_next[i] += new_matrix[i][j]*x_prev[j]
+        x_next[i] += new_matrix[i][size]
+    x = 0
+    for i in range(size):
+        x += matrix[0][i]*x_next[j]
+    print(x)
+    
 
 if __name__ == '__main__':
     matrix = []
