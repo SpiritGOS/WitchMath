@@ -27,16 +27,22 @@ def zeidel(matrix, eps):
     x_prev = [new_matrix[i][-1] for i in range(size)]
     x_next = [0]*size
 
-    for i in range(size):
-        for j in range(i):
-            x_next[i] += new_matrix[i][j]*x_next[j]
-        for j in range(i, size):
-            x_next[i] += new_matrix[i][j]*x_prev[j]
-        x_next[i] += new_matrix[i][size]
-    x = 0
-    for i in range(size):
-        x += matrix[0][i]*x_next[j]
-    print(x)
+    while True:
+        for i in range(size):
+            for j in range(i):
+                x_next[i] += new_matrix[i][j]*x_next[j]
+            for j in range(i, size):
+                x_next[i] += new_matrix[i][j]*x_prev[j]
+            x_next[i] += new_matrix[i][size]
+        x_prev = [x_next[i] for i in range(size)]
+        x_next = [0]*size
+
+
+        e = 0
+        for i in range(size):  # подстановка решений в уравнение
+            e += matrix[0][i]*x_prev[i]
+        if abs(e-matrix[0][size]) <= eps:  # сравнение точности
+            return x_prev
     
 
 if __name__ == '__main__':
@@ -45,4 +51,4 @@ if __name__ == '__main__':
     with open('zeidel.txt', 'r') as f:
         for line in f:
             matrix.append([float(i) for i in line.split()])
-    zeidel(matrix, eps)
+    [print(f'x[{i + 1}] = {l}') for i, l in enumerate(zeidel(matrix, eps))]
