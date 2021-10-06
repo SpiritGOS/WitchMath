@@ -10,7 +10,7 @@ def Newton_Lin(equations):
         for j, s in enumerate(vars):
             Jacob[i, j] = sympy.diff(fi, s)
 
-    print(Jacob.tolist(), end='\n')
+    print(numpy.array(Jacob.tolist()))
 
 
 if __name__ == "__main__":
