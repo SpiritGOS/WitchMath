@@ -63,7 +63,7 @@ def iterations_method(func, dfunc, gfunc, dgfunc, a, b, eps):
     while abs(dgfunc(dfunc, a, b, new_x)) < 1:
         new_x = gfunc(func, dfunc, a, b, x[-1])
         x.append(new_x)
-        if abs(func(new_x)) < eps and (x[-1] if len(x) >= 1 else 1 - x[-2] if len(x) >= 2 else 1)**2/abs(2 * (x[-2] if len(x) >= 2 else 2) - (x[-1] if len(x) >= 1 else 1) - (x[-3] if len(x) >= 3 else 1)) < eps:
+        if abs(func(new_x)) < eps and ((x[-1] - x[-2])**2/abs(2 * x[-2] - x[-1] - x[-3]) < eps if len(x) >= 3 else False):
             return new_x
 
 
