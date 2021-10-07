@@ -1,6 +1,4 @@
 import random as r
-import math
-
 
 def printMatrix(matrix):
     for a in range(len(matrix)):
@@ -12,7 +10,7 @@ def printMatrix(matrix):
 
 def Gauss():
     # Считываем матрицу из файла
-    f = open('Matrix.txt', 'r')
+    f = open('C:\\Users\\marse\\OneDrive\\Документы\\Проекты\\Вычислительная математика\\First Wave\\Gauss\\Matrix.txt', 'r')
     matrix = []
     for line in f:
         matrix.append(list(map(float, line.split())))

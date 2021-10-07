@@ -54,8 +54,8 @@ def rotations(matrix, rotated_matrix, eps):
         for j in range(i,size):
             if i == j:
                 pass
-            elif abs(matrix[i][j] >= max_):
-                max_ = matrix[i][j]
+            elif abs(matrix[i][j]) >= max_:
+                max_ = abs(matrix[i][j])
                 k = i  # maxi по методе
                 m = j  # maxj по методе
 
@@ -89,7 +89,7 @@ def rotations(matrix, rotated_matrix, eps):
 if __name__ == '__main__':
     matrix = []
     eps = 0.0000001
-    with open('Matrix.txt', 'r') as f:
+    with open('C:\\Users\\marse\\OneDrive\\Документы\\Проекты\\Вычислительная математика\\First Wave\\Rotations\\Matrix.txt', 'r') as f:
         for line in f:
             matrix.append([float(i) for i in line.split()])
     # A = np.matrix(matrix)

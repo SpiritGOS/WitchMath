@@ -1,6 +1,6 @@
 def Progonka():
     var = []
-    file = open('Matrix.txt', 'r')
+    file = open('C:\\Users\\marse\\OneDrive\\Документы\\Проекты\\Вычислительная математика\\First Wave\\Progonka\\Matrix.txt', 'r')
     for line in file:
         var.append(list(map(float, line.split())))
     file.close()
