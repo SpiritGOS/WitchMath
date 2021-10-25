@@ -26,8 +26,9 @@ def zeidel(matrix, eps):
         new_matrix[i][size] /= (coefficients[i])
     x_prev = [new_matrix[i][-1] for i in range(size)]
     x_next = [0]*size
-
+    count = 0
     while True:
+        count += 1
         for i in range(size):
             for j in range(i):
                 x_next[i] += new_matrix[i][j]*x_next[j]
@@ -42,6 +43,7 @@ def zeidel(matrix, eps):
         for i in range(size):  # подстановка решений в уравнение
             e += matrix[0][i]*x_prev[i]
         if abs(e-matrix[0][size]) <= eps:  # сравнение точности
+            print(f'Кол-во итераций = {count}\n')
             return x_prev
     
 

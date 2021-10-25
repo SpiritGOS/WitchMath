@@ -1,5 +1,6 @@
-from math import atan, cos, sin
+from math import atan, cos, sin, sqrt
 
+helpx = 0
 def rotation_method(matrix, eps):
     rotated = [[1 if row == col else 0 for row in range(len(matrix))] for col in range(len(matrix))]
     return rotations(matrix, rotated, eps)
@@ -38,24 +39,31 @@ def rotations(matrix, rotated_matrix, eps):
             for j in range(size):
                 if i == j:
                     lambdas.append(matrix[i][j])
-        V = rotated_matrix
+        V = transpon(rotated_matrix)
         return (lambdas, V)
-
-    if eps >= 1:
-       return final()
+    
+    summ = 0
+    size = len(matrix)
+    for i in range(size):
+        for j in range(i,size):
+            if i == j:
+                pass
+            else:
+                summ += matrix[i][j]**2
+    if sqrt(summ) <= eps:
+        return final()
 
     print('Исходная матрица:')
     printMatrix(matrix)
-    size = len(matrix)
-    max_ = 0
+    max_ = -99999
 
     
     for i in range(size):
         for j in range(i,size):
             if i == j:
                 pass
-            elif abs(matrix[i][j] >= max_):
-                max_ = matrix[i][j]
+            elif abs(matrix[i][j]) >= max_:
+                max_ = abs(matrix[i][j])
                 k = i  # maxi по методе
                 m = j  # maxj по методе
 
@@ -73,22 +81,28 @@ def rotations(matrix, rotated_matrix, eps):
     h_km = -sin(phi)
     h_mm = cos(phi)
 
-    E = [[1 if i == j else 0 for i in range(size)] for j in range(size)]
-        
-        
-    H = E
+    H = [[1 if i == j else 0 for i in range(size)] for j in range(size)]   
+
     H[k][k] = h_kk
     H[m][k] = h_mk  
     H[k][m] = h_km
     H[m][m] = h_mm
+    printMatrix(H)
+    printMatrix(matrix)
     Ht = transpon(H)
+    printMatrix(H)
     matrix_1 = multiply_matrix(Ht, multiply_matrix(matrix, H))
-    return rotations(matrix_1, multiply_matrix(rotated_matrix, H), eps*10)
+    printMatrix(matrix_1)
+    rotated_matrix = multiply_matrix(rotated_matrix, H)
+    # return
+    return rotations(matrix_1, rotated_matrix, eps)
+    # 2 = 14.75
+    # 3 = 7,36
 
 
 if __name__ == '__main__':
     matrix = []
-    eps = 0.0000001
+    eps = 0.05
     with open('Matrix.txt', 'r') as f:
         for line in f:
             matrix.append([float(i) for i in line.split()])

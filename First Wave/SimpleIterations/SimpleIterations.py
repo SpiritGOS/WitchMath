@@ -13,7 +13,9 @@ def simple_iterations(matrix, eps):
     size = len(matrix)
     Xn = [0] * size
     x1 = [matrix[i][-1] / matrix[i][i] for i in range(size)]
+    count = 0
     while True:
+        count +=1
         for i in range(size): # Метод простых итераций
             Xn[i] = matrix[i][-1] / matrix[i][i]; # следующее приближение
             for j in range(size):
@@ -29,8 +31,8 @@ def simple_iterations(matrix, eps):
         for i in range(size):
             x1[i] = Xn[i] # запись   значения последующего приближения в предыдущее для увелечения точности последующих приближений
         if flag: # Проверка на выход из бесконечного цикла
-            break
-    return Xn
+            print(f'Кол-во итераций = {count}\n')
+            return Xn
 
 
 if __name__ == '__main__':

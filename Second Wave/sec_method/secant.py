@@ -8,7 +8,9 @@ def func_19(x):
 
 def secant(func, a, b, eps):
     cshki = [1, 2]
+    count = 0
     while True:
+        count += 1
         c = (a * func(b) - b * func(a))/(func(b)-func(a))
         if func(a) * func(c) < 0:
             b = c
@@ -17,6 +19,7 @@ def secant(func, a, b, eps):
         # print(cshki[-1], cshki[-2])
         
         if not (abs(func(c)) > eps) and (abs(cshki[-1] - cshki[-2]) > eps):
+            print(f'Кол-во итераций = {count}\n')
             return c
 
 if __name__ == '__main__':

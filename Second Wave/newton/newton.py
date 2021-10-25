@@ -10,7 +10,7 @@ def newton_method(func, dfunc, ddfunc, eps = 0.01, a = -2, b = 2):
         while abs(func(c)) > eps:
             count += 1
             c = c - func(c) / dfunc(c)
-        print(count)
+        print(f'Кол-во итераций = {count}\n')
         return c
     except ValueError:
         return 'Value not invalidate'
@@ -35,4 +35,4 @@ def d2_func_19(x):
 
 
 if __name__ == '__main__':
-    print(newton_method(func_16, dfunc_16, dfunc_16_d2, 0.001, 1, 2))
+    print(newton_method(func_19, d_func_19, d2_func_19, 0.001, 1, 2))
