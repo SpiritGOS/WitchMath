@@ -34,4 +34,5 @@ def Newton_Lin(equations, x0=2, y0=2, eps = 0.0001):
 if __name__ == "__main__":
     equations = ['2*x - cos(y)', '2*y - exp(x) - x']
     test = ['x**2 + y**2 - 4', 'x**2 - y']
+    test2 = ['x-2*y**2+1','-1*x**2+2*y-1']
     Newton_Lin(test)
