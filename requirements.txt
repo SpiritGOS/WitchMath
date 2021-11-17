@@ -1,2 +1,4 @@
 mpmath==1.2.1
 sympy==1.9
+matplotlib.pyplot==
+numpy==
