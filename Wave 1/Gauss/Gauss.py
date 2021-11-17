@@ -49,5 +49,5 @@ def Gauss():
     for index, elem in enumerate(result):
         print(f'X[{index + 1}] = {round(elem, 3)}')
 
-
-Gauss()
+if __name__ == "__main__":
+    Gauss()
