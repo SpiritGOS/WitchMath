@@ -1,5 +1,6 @@
 import sympy as sp
 import numpy as np
+import math
 import matplotlib.pyplot as plt
 from sympy.core.singleton import S
 
@@ -35,8 +36,10 @@ def GetLagrangePolynomial(InterpolationNodes):
     return Polynom
 
 if __name__ == "__main__":
-    PrimeFunction = 'cos(x)'
-    InterNodes = GetInterNodes(PrimeFunction, [1,3,7])
+    PrimeFunction = 'asin(x)+x'
+    InterNodes = GetInterNodes(PrimeFunction, [-0.4 , -0.1, 0.2 , 0.5])
+    # PrimeFunction = 'ln(x)+x'
+    # InterNodes = GetInterNodes(PrimeFunction, [0.1, 0.5, 0.9, 1.3])
     LagrangePolynomial = sp.sympify(GetLagrangePolynomial(InterNodes))
     print(InterNodes)
     print(LagrangePolynomial)
@@ -47,7 +50,7 @@ if __name__ == "__main__":
     NumOfPoints = 1024
     Step = abs(InterNodes[0][-1] - InterNodes[0][0]) / NumOfPoints
 
-    print(Step)
+    print(f'Step: {Step}')
         
     for i in np.arange(InterNodes[0][0] , InterNodes[0][-1], Step):
         graph[0].append(i)
