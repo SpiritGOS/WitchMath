@@ -94,10 +94,7 @@ def rotations(matrix, rotated_matrix, eps):
     matrix_1 = multiply_matrix(Ht, multiply_matrix(matrix, H))
     printMatrix(matrix_1)
     rotated_matrix = multiply_matrix(rotated_matrix, H)
-    # return
     return rotations(matrix_1, rotated_matrix, eps)
-    # 2 = 14.75
-    # 3 = 7,36
 
 
 if __name__ == '__main__':
@@ -106,9 +103,6 @@ if __name__ == '__main__':
     with open('Matrix.txt', 'r') as f:
         for line in f:
             matrix.append([float(i) for i in line.split()])
-    # A = np.matrix(matrix)
-    # print(type(A))
-    # print(A)
     rotated = [[1 if row == col else 0 for row in range(len(matrix))] for col in range(len(matrix))]
     lambdas, V = rotation_method(matrix, eps)
     [print(f'lambda[{i + 1}] = {l}') for i, l in enumerate(lambdas)]
