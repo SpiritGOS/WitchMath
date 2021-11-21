@@ -10,9 +10,9 @@ def printMatrix(matrix):
     print('\n', end='')
 
 
-def Gauss():
+def Gauss(way=''):
     # Считываем матрицу из файла
-    f = open('Matrix.txt', 'r')
+    f = open(way+'Matrix.txt', 'r')
     matrix = []
     for line in f:
         matrix.append(list(map(float, line.split())))
@@ -48,6 +48,7 @@ def Gauss():
     print("Итоговые ответы:")
     for index, elem in enumerate(result):
         print(f'X[{index + 1}] = {round(elem, 3)}')
+    return result
 
 if __name__ == "__main__":
     Gauss()

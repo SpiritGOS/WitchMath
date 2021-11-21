@@ -1,4 +1,5 @@
 import sympy as sp
+import re
 # Таблица значений X, Y. Так же H и Х*
 TABLE_16 = (
     [0.1, 0.5, 0.9, 1.3, 1.7],
@@ -52,7 +53,9 @@ def find_S_node(table, h, m, X):
         (y[i]-(m[i]*h**2)/6)*(X-x[i-1])/h +
         (y[i-1]-(m[i-1]*h**2)/6)*(x[i]-X)/h
     )
-    return s
+    s_str = f'({m[i]}*(x-{x[i-1]})+{m[i-1]}*({x[i]}-x^3))/6*{h} + ({y[i]}-({m[i]}*{h}**2)/6)*(x-{x[i-1]})/{h} +({y[i-1]}-({m[i-1]}*{h}**2)/6)*({x[i]}-x)/{h}'
+    s_str = sp.sympify(s_str)
+    return s, s_str
 
 # #Вычислим прогоночные коэффициенты Q, P
 # Y = [0, 0, -1.1978/0.9, 0.181/0.9, 0.0328/0.9]
@@ -76,4 +79,6 @@ def find_S_node(table, h, m, X):
 if __name__ == "__main__":
     Y, Q, P = coeffs(TABLE_19, H_19)
     m = find_m(Q, P)
-    print(find_S_node(TABLE_19, H_19, m, X_19))
+    s, s_str = find_S_node(TABLE_19, H_19, m, X_19)
+    print(s)
+    sp.pprint(s_str)
